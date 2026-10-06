@@ -1,0 +1,22 @@
+# Regional Temporal Convolutional Network Configuration (Planned)
+model_name: "regional_tcn"
+random_seed: 42
+
+architecture:
+  input_dim: 20                  # 16 physical forcings + 4 cyclical calendar features
+  static_dim: 129                # Invariant catchment physiography
+  tcn_channels: [64, 64, 128, 128]
+  kernel_size: 3
+  dilations: [1, 2, 4, 8, 16, 32]
+  dropout: 0.2
+  receptive_field_days: 64
+  dense_hidden_dim: 128
+
+training:
+  batch_size: 32
+  learning_rate: 0.0005
+  weight_decay: 0.00001
+  max_epochs: 100
+  patience: 15
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"

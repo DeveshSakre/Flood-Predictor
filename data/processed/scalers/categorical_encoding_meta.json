@@ -1,0 +1,21 @@
+{
+  "dom_land_cover_categories": [
+    "crops",
+    "rangeland",
+    "trees"
+  ],
+  "hsg_major_categories": [
+    "C",
+    "C/D",
+    "D"
+  ],
+  "geol_class_1st_categories": [
+    "Acid Plutonic Rocks",
+    "Basic Volcanic Rocks",
+    "Intermediate Volcanic Rocks",
+    "Metamorphic Rocks",
+    "Mixed Sedimentary Rocks",
+    "Siliciclastic Sedimentary Rocks",
+    "Unconsolidated Sediments"
+  ]
+}

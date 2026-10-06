@@ -1,0 +1,160 @@
+feature_name,feature_type,subcategory,unit,scaling,imputation,description
+prcp(mm/day),DYNAMIC,Physical Forcing (Daily),mm/day,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+tmax(C),DYNAMIC,Physical Forcing (Daily),C,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+tmin(C),DYNAMIC,Physical Forcing (Daily),C,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+srad_lw(w/m2),DYNAMIC,Physical Forcing (Daily),w/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+srad_sw(w/m2),DYNAMIC,Physical Forcing (Daily),w/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+wind_u(m/s),DYNAMIC,Physical Forcing (Daily),m/s,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+wind_v(m/s),DYNAMIC,Physical Forcing (Daily),m/s,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+rel_hum(%),DYNAMIC,Physical Forcing (Daily),%,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+pet_gleam(mm/day),DYNAMIC,Physical Forcing (Daily),mm/day,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+aet_gleam(mm/day),DYNAMIC,Physical Forcing (Daily),mm/day,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+evap_canopy(mm/day),DYNAMIC,Physical Forcing (Daily),mm/day,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+evap_surface(mm/day),DYNAMIC,Physical Forcing (Daily),mm/day,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+sm_lvl1(kg/m2),DYNAMIC,Physical Forcing (Daily),kg/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+sm_lvl2(kg/m2),DYNAMIC,Physical Forcing (Daily),kg/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+sm_lvl3(kg/m2),DYNAMIC,Physical Forcing (Daily),kg/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+sm_lvl4(kg/m2),DYNAMIC,Physical Forcing (Daily),kg/m2,StandardScaler (Train Mean/Std),None (0% missing in raw),Daily hydrometeorological and land surface driver
+sin_month,DYNAMIC,Calendar Cyclical Encoding,sin/cos (-1 to 1),Preserved (-1 to 1 bounded),Deterministic harmonic calculation,Harmonic seasonal encodings capturing annual monsoon seasonality
+cos_month,DYNAMIC,Calendar Cyclical Encoding,sin/cos (-1 to 1),Preserved (-1 to 1 bounded),Deterministic harmonic calculation,Harmonic seasonal encodings capturing annual monsoon seasonality
+sin_doy,DYNAMIC,Calendar Cyclical Encoding,sin/cos (-1 to 1),Preserved (-1 to 1 bounded),Deterministic harmonic calculation,Harmonic seasonal encodings capturing annual monsoon seasonality
+cos_doy,DYNAMIC,Calendar Cyclical Encoding,sin/cos (-1 to 1),Preserved (-1 to 1 bounded),Deterministic harmonic calculation,Harmonic seasonal encodings capturing annual monsoon seasonality
+elev_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+elev_median,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+elev_min,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+elev_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+gauge_elevation,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+slope_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+slope_median,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+slope_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+dpsbar,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+ghi_area,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+ghi_lat,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+ghi_lon,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_mean_anum,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_monthly_variability,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_annual_variability,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+p_unif,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+high_prec_freq,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+high_prec_dur,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+max_high_prec_dur,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+low_prec_freq,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+low_prec_dur,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+max_low_prec_dur,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+asynchronicity,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+tmin_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+tmax_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pet_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pet_min,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pet_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pet_mean_anum,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pet_gleam_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+aet_gleam_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_canopy_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_canopy_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_canopy_anum,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_surface_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_surface_min,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_surface_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+evap_surface_anum,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+aridity_p_pet,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+aridity_pet_aet,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+ai_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+rel_hum_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+srad_lw_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+srad_sw_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+wind_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sm_lvl1_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sm_lvl2_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sm_lvl3_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sm_lvl4_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+water_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+trees_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+flooded_veg_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+crops_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+built_area_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+bare_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+range_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+dom_land_cover_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+lai_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+lai_min,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+lai_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+lai_diff,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_depth,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_conductivity_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_conductivity_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_awc_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_awc_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_awsc_min,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_awsc_max,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+soil_awsc_major,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sand_frac_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+sand_frac_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+silt_frac_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+silt_frac_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+clay_frac_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+clay_frac_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+gravel_frac_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+gravel_frac_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+bulkdens_top_major,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+bulkdense_top_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+bulkdens_sub_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+org_carb_top_major,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+org_carb_top_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+org_carb_sub_major,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+org_carb_sub_mean,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+organic_frac_top,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+organic_frac_sub,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+wtd,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+geol_porosity,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+geol_permeability,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+carb_rocks_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+geol_class_1st_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+geol_class_2nd_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+num_dams,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+res_store_sum,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+first_dam_year,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+last_dam_year,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+irrigation_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+hydroelec_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+drinking_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+flood_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+overflow_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+navigation_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+tailing_frac,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pop_density_2000,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pop_density_2005,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pop_density_2010,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pop_density_2015,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+pop_density_2020,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+urban_frac_1985,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+urban_frac_1995,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+urban_frac_2005,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+crops_frac_1985,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+crops_frac_1995,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+crops_frac_2005,STATIC,Physiographic / Climate / Anthropogenic,various,StandardScaler (Train Mean/Std),Domain Zero for dams; Train Median for others,Catchment invariant property
+dom_lc_crops,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+dom_lc_rangeland,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+dom_lc_trees,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+hsg_C,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+hsg_C/D,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+hsg_D,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Acid Plutonic Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Basic Volcanic Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Intermediate Volcanic Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Metamorphic Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Mixed Sedimentary Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Siliciclastic Sedimentary Rocks,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+geol_Unconsolidated Sediments,STATIC,One-Hot Categorical,binary (0/1),Binary (0/1),Encoded from verified classes,One-hot categorical attribute representation
+UPLAND_SKM,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+CATCH_SKM,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+DIST_DN_KM,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+DIST_UP_KM,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+ORD_STRA,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+ORD_CLAS,GRAPH_NODE,HydroRIVERS Reach Property,km or order or km2,StandardScaler (Train Mean/Std),None (matched reach),Node topological and scale feature for River GAT
+routing_distance_km,GRAPH_EDGE,Reach-to-Reach Topology,km or ratio or delta,StandardScaler / Direct Weight,Traversed from HydroRIVERS DAG,Directed edge routing weight for GAT message passing
+steps,GRAPH_EDGE,Reach-to-Reach Topology,km or ratio or delta,StandardScaler / Direct Weight,Traversed from HydroRIVERS DAG,Directed edge routing weight for GAT message passing
+drainage_area_ratio,GRAPH_EDGE,Reach-to-Reach Topology,km or ratio or delta,StandardScaler / Direct Weight,Traversed from HydroRIVERS DAG,Directed edge routing weight for GAT message passing
+stream_order_delta,GRAPH_EDGE,Reach-to-Reach Topology,km or ratio or delta,StandardScaler / Direct Weight,Traversed from HydroRIVERS DAG,Directed edge routing weight for GAT message passing

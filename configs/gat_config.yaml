@@ -1,0 +1,25 @@
+# River-Network Graph Attention Network Configuration (Planned)
+model_name: "river_network_gat"
+random_seed: 42
+
+architecture:
+  in_features: 128               # Output from Regional TCN temporal encoder
+  node_features_dim: 6           # HydroRIVERS reach scales (Upland, Catch, Dist_DN, Dist_UP, Stra, Clas)
+  edge_features_dim: 4           # Routing distance, steps, area ratio, stream order delta
+  hidden_dim: 128
+  out_features: 128
+  num_heads: 4
+  num_layers: 2
+  dropout: 0.1
+  residual: true
+  directed_message_passing: true
+
+graph_data:
+  edge_files:
+    train: "data/processed/graph/edges_train.csv"
+    val: "data/processed/graph/edges_val.csv"
+    test: "data/processed/graph/edges_test.csv"
+  node_files:
+    train: "data/processed/graph/nodes_train.csv"
+    val: "data/processed/graph/nodes_val.csv"
+    test: "data/processed/graph/nodes_test.csv"

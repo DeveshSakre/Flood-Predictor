@@ -1,0 +1,120 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook checkpoints & autosaves
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Raw datasets (NEVER commit raw data to GitHub)
+data/raw/*
+!data/raw/.gitkeep
+
+# Geospatial and large scientific data formats
+*.gdb/
+*.gdb.zip
+*.shp
+*.shx
+*.dbf
+*.cpg
+*.prj
+*.sbn
+*.sbx
+*.tif
+*.tiff
+*.nc
+*.nc4
+*.h5
+*.hdf5
+
+# Large model checkpoints and binary weights
+*.pt
+*.pth
+*.ckpt
+*.bin
+models/*.pt
+models/*.pth
+models/*.ckpt
+models/*.bin
+!models/.gitkeep
+
+# Temporary scratch and execution artifacts
+scratch/
+*.log
+
+# Explicitly ensure processed metadata and graph structures are tracked
+!data/processed/*.csv
+!data/processed/scalers/*.json
+!data/processed/scalers/*.joblib
+!data/processed/graph/*.csv
+!data/processed/graph/*.npz
+!experiments/*/.gitkeep
+!results/*/.gitkeep

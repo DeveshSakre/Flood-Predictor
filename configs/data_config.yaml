@@ -1,0 +1,47 @@
+# Data Pipeline Configuration
+paths:
+  # Base directories (Configurable relative paths)
+  raw_dir: "data/raw"
+  raw_dir_fallback: "../Datasets"
+  camels_dir: "data/raw/CAMELS_IND_All_Catchments"
+  hydrorivers_gdb: "data/raw/HydroRIVERS_v10_as.gdb/HydroRIVERS_v10_as.gdb"
+  hydrobasins_dir: "data/raw/hybas_as_lev01-12_v1c"
+  
+  processed_dir: "data/processed"
+  scalers_dir: "data/processed/scalers"
+  graph_dir: "data/processed/graph"
+
+splits:
+  source_train_csv: "data/processed/candidate_source_catchments.csv"
+  validation_csv: "data/processed/candidate_validation_catchments.csv"
+  unseen_test_csv: "data/processed/candidate_unseen_test_catchments.csv"
+  catchment_groups_csv: "data/processed/catchment_groups.csv"
+  id_mapping_csv: "data/processed/id_mapping.csv"
+  final_feature_list_csv: "data/processed/final_feature_list.csv"
+
+partition_counts:
+  train: 169
+  validation: 36
+  held_out_test: 37
+  operational_ungauged_demo: 5
+
+temporal:
+  start_date: "1980-01-01"
+  end_date: "2020-12-31"
+  total_days: 14976
+  resolution: "daily"
+  default_lookback_window: 64
+
+dynamic_features:
+  physical_count: 16
+  cyclical_count: 4
+  total_count: 20
+
+static_features:
+  numeric_count: 116
+  one_hot_count: 13
+  total_count: 129
+
+streamflow_target:
+  unit: "m3/s"
+  min_flow_threshold_train: 30.0

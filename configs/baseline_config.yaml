@@ -1,0 +1,33 @@
+# Baseline Models Configuration (Step 4 Focus)
+model_name: "xgboost_baseline"
+random_seed: 42
+
+ridge:
+  alpha: 1.0
+  fit_intercept: true
+
+xgboost:
+  n_estimators: 300
+  learning_rate: 0.05
+  max_depth: 6
+  subsample: 0.8
+  colsample_bytree: 0.8
+  early_stopping_rounds: 30
+  eval_metric: "rmse"
+  objective: "reg:squarederror"
+  n_jobs: -1
+
+lstm_baseline:
+  input_dim: 20
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0.2
+  learning_rate: 0.001
+  batch_size: 64
+  epochs: 50
+  lookback_window: 64
+
+feature_engineering:
+  lag_days: [1, 2, 3, 7, 14, 30]
+  rolling_windows: [3, 7, 14, 30]
+  include_static_attributes: true

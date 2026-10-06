@@ -1,0 +1,18 @@
+# Quantile Regression & Uncertainty Configuration (Planned)
+model_name: "quantile_regression"
+random_seed: 42
+
+quantiles:
+  lower: 0.10                    # P10: Lower uncertainty bound (drought / low flow)
+  median: 0.50                   # P50: Median discharge expectation (m3/s)
+  upper: 0.90                    # P90: Upper flood hazard bound (inundation threshold)
+  nominal_coverage: 0.80         # Target coverage interval (P90 - P10)
+
+loss:
+  type: "pinball_loss"
+  reduction: "mean"
+  non_crossing_penalty: 0.01     # Optional soft constraint to prevent quantile crossing
+
+metrics:
+  picp_target: 0.80              # Prediction Interval Coverage Probability
+  track_sharpness: true          # Mean Prediction Interval Width (MPIW)
