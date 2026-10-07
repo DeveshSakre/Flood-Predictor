@@ -38,6 +38,53 @@ class TestPreprocessing(unittest.TestCase):
         inverted = prep.inverse_transform_feature(df_norm[test_col], test_col)
         np.testing.assert_allclose(inverted, df_test[test_col].to_numpy(), atol=1e-5)
 
+    def test_static_transformation_key_and_ordering(self):
+        """Verify static transformation checks 'features' key and preserves exact 129-feature ordering."""
+        prep = Preprocessor()
+        expected_cols = prep.static_params.get("features", [])
+        self.assertEqual(len(expected_cols), 129, f"Expected 129 static features, got {len(expected_cols)}")
+
+        # Create dummy dataframe with shuffled feature columns
+        shuffled_cols = list(reversed(expected_cols))
+        dummy_data = np.zeros((3, 129))
+        dummy_df = pd.DataFrame(dummy_data, columns=shuffled_cols)
+        # Test imputation on a numeric feature present in imputation rules
+        numeric_col = list(prep.static_imputation_values.keys())[0]
+        dummy_df.loc[0, numeric_col] = np.nan
+
+        transformed = prep.transform_static(dummy_df)
+
+        # Verify exact 129 features
+        self.assertEqual(transformed.shape[1], 129)
+        # Verify deterministic feature ordering matches scaler metadata
+        self.assertEqual(list(transformed.columns), expected_cols)
+        # Verify no NaN or Inf
+        self.assertFalse(transformed.isna().any().any(), "Transformed static features contain NaN.")
+        self.assertFalse(np.isinf(transformed.to_numpy()).any(), "Transformed static features contain Inf.")
+
+    def test_categorical_static_encoding(self):
+        """Verify categorical static encoding produces all 13 expected indicator features."""
+        prep = Preprocessor()
+        cat_meta = prep.categorical_meta
+
+        sample_df = pd.DataFrame({
+            "dom_land_cover": ["crops", "rangeland"],
+            "hsg_major": ["C", "D"],
+            "geol_class_1st": ["Metamorphic Rocks", "Basic Volcanic Rocks"],
+        })
+
+        encoded = prep.encode_categorical_static(sample_df)
+
+        # Check land cover indicators
+        for c in cat_meta["dom_land_cover_categories"]:
+            self.assertIn(f"dom_lc_{c}", encoded.columns)
+        # Check HSG indicators
+        for c in cat_meta["hsg_major_categories"]:
+            self.assertIn(f"hsg_{c}", encoded.columns)
+        # Check geology indicators
+        for c in cat_meta["geol_class_1st_categories"]:
+            self.assertIn(f"geol_{c}", encoded.columns)
+
 
 if __name__ == "__main__":
     unittest.main()

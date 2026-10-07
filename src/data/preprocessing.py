@@ -106,15 +106,43 @@ class Preprocessor:
                     df_out[col] = df_out[col] - mean
         return df_out
 
+    def encode_categorical_static(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        One-hot encode categorical static attributes using train-fitted metadata.
+
+        Args:
+            df: DataFrame containing raw categorical columns ('dom_land_cover', 'hsg_major', 'geol_class_1st').
+
+        Returns:
+            DataFrame augmented with one-hot encoded indicator columns.
+        """
+        df_out = df.copy()
+        if not self.categorical_meta:
+            return df_out
+
+        if "dom_land_cover" in df_out.columns and "dom_land_cover_categories" in self.categorical_meta:
+            for c in self.categorical_meta["dom_land_cover_categories"]:
+                df_out[f"dom_lc_{c}"] = (df_out["dom_land_cover"] == c).astype(float)
+
+        if "hsg_major" in df_out.columns and "hsg_major_categories" in self.categorical_meta:
+            for c in self.categorical_meta["hsg_major_categories"]:
+                df_out[f"hsg_{c}"] = (df_out["hsg_major"] == c).astype(float)
+
+        if "geol_class_1st" in df_out.columns and "geol_class_1st_categories" in self.categorical_meta:
+            for c in self.categorical_meta["geol_class_1st_categories"]:
+                df_out[f"geol_{c}"] = (df_out["geol_class_1st"] == c).astype(float)
+
+        return df_out
+
     def transform_static(self, df: pd.DataFrame) -> pd.DataFrame:
         """
-        Impute missing static values and scale using train-fitted RobustScaler.
+        Impute missing static values and scale using train-fitted StandardScaler.
 
         Args:
             df: DataFrame containing static catchment attributes.
 
         Returns:
-            Scaled copy of static features.
+            Scaled copy of static features with exact 129-feature ordering.
         """
         df_out = df.copy()
 
@@ -123,12 +151,18 @@ class Preprocessor:
             if col in df_out.columns:
                 df_out[col] = df_out[col].fillna(val)
 
-        # Apply train-fitted scaler to numeric columns
-        if self.static_scaler is not None and "feature_names" in self.static_params:
-            cols = self.static_params["feature_names"]
+        # Apply train-fitted scaler to numeric and encoded columns
+        if self.static_scaler is not None and "features" in self.static_params:
+            cols = self.static_params["features"]
             matched_cols = [c for c in cols if c in df_out.columns]
             if len(matched_cols) == len(cols):
-                df_out[cols] = self.static_scaler.transform(df_out[cols])
+                scaled_mat = self.static_scaler.transform(df_out[cols].to_numpy())
+                # Preserve exact 129-feature ordering from scaler metadata
+                scaled_df = pd.DataFrame(scaled_mat, columns=cols, index=df_out.index)
+                for c in df_out.columns:
+                    if c not in cols:
+                        scaled_df[c] = df_out[c]
+                df_out = scaled_df
 
         return df_out
 

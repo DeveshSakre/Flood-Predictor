@@ -1,6 +1,6 @@
 """
 Hydrologic model evaluation metrics.
-Includes Nash-Sutcliffe Efficiency (NSE), Kling-Gupta Efficiency (KGE), RMSE, MAE, and PBIAS.
+Includes Nash-Sutcliffe Efficiency (NSE), Kling-Gupta Efficiency (KGE), RMSE, MAE, PBIAS, and Pearson r.
 """
 
 from typing import Dict, Any, Union
@@ -32,6 +32,26 @@ def nash_sutcliffe_efficiency(obs: np.ndarray, sim: np.ndarray) -> float:
 
     numerator = np.sum((obs_clean - sim_clean) ** 2)
     return float(1.0 - (numerator / denominator))
+
+
+def pearson_correlation(obs: np.ndarray, sim: np.ndarray) -> float:
+    """
+    Compute Pearson correlation coefficient r.
+    Optimal value: 1.0.
+    """
+    obs_clean, sim_clean = _clean_arrays(obs, sim)
+    if len(obs_clean) < 2:
+        return float("nan")
+
+    std_obs = float(np.std(obs_clean, ddof=1))
+    std_sim = float(np.std(sim_clean, ddof=1))
+
+    if std_obs < 1e-12 or std_sim < 1e-12:
+        return float("nan")
+
+    corr_mat = np.corrcoef(obs_clean, sim_clean)
+    r = float(corr_mat[0, 1])
+    return r if not np.isnan(r) else float("nan")
 
 
 def kling_gupta_efficiency(obs: np.ndarray, sim: np.ndarray) -> float:
@@ -107,4 +127,5 @@ def compute_all_metrics(obs: np.ndarray, sim: np.ndarray) -> Dict[str, float]:
         "RMSE": root_mean_squared_error(obs, sim),
         "MAE": mean_absolute_error(obs, sim),
         "PBIAS": percent_bias(obs, sim),
+        "Pearson_r": pearson_correlation(obs, sim),
     }
