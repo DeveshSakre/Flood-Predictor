@@ -118,3 +118,4 @@ scratch/
 !data/processed/graph/*.npz
 !experiments/*/.gitkeep
 !results/*/.gitkeep
+results/regional_tcn/*_predictions.csv

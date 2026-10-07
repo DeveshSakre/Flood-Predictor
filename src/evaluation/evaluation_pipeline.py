@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from src.evaluation.metrics import compute_all_metrics
-from src.evaluation.peak_metrics import peak_flow_error
+from src.evaluation.peak_metrics import peak_flow_error, peak_timing_error, high_flow_nse
 
 
 def evaluate_catchment_predictions(
@@ -37,11 +37,17 @@ def evaluate_catchment_predictions(
 
         metrics = compute_all_metrics(obs, pred)
         peak = peak_flow_error(obs, pred)
+        timing = peak_timing_error(obs, pred)
+        hf_nse = high_flow_nse(obs, pred)
 
         metrics["gauge_id"] = str(gid).zfill(5)
+        metrics["peak_obs_m3s"] = peak["obs_peak"]
+        metrics["peak_sim_m3s"] = peak["sim_peak"]
         metrics["peak_diff_m3s"] = peak["diff_m3s"]
         metrics["peak_rel_error_pct"] = peak["rel_error_pct"]
-        metrics["n_timesteps"] = len(obs)
+        metrics["peak_timing_days"] = timing
+        metrics["high_flow_nse"] = hf_nse
+        metrics["n_timesteps"] = int(np.sum(~np.isnan(obs) & ~np.isnan(pred)))
 
         records.append(metrics)
 
@@ -54,15 +60,22 @@ def summarize_regional_performance(results_df: pd.DataFrame) -> Dict[str, Any]:
     Compute median, interquartile range (IQR), and mean metrics across all unseen catchments.
     """
     summary = {}
-    metric_cols = ["NSE", "KGE", "RMSE", "MAE", "PBIAS"]
+    metric_cols = ["NSE", "KGE", "RMSE", "MAE", "PBIAS", "Pearson_r", "high_flow_nse"]
 
     for col in metric_cols:
         if col in results_df.columns:
             valid_vals = results_df[col].dropna()
-            summary[f"{col}_median"] = float(valid_vals.median())
-            summary[f"{col}_q25"] = float(valid_vals.quantile(0.25))
-            summary[f"{col}_q75"] = float(valid_vals.quantile(0.75))
-            summary[f"{col}_mean"] = float(valid_vals.mean())
-            summary[f"{col}_fraction_nse_gt_0"] = float((valid_vals > 0.0).mean())
+            if len(valid_vals) > 0:
+                summary[f"{col}_median"] = float(valid_vals.median())
+                summary[f"{col}_q25"] = float(valid_vals.quantile(0.25))
+                summary[f"{col}_q75"] = float(valid_vals.quantile(0.75))
+                summary[f"{col}_mean"] = float(valid_vals.mean())
+            else:
+                summary[f"{col}_median"] = float("nan")
+
+    if "NSE" in results_df.columns:
+        valid_nse = results_df["NSE"].dropna()
+        summary["fraction_nse_gt_0"] = float((valid_nse > 0.0).mean()) if len(valid_nse) > 0 else 0.0
+        summary["fraction_nse_gt_0.5"] = float((valid_nse > 0.5).mean()) if len(valid_nse) > 0 else 0.0
 
     return summary
