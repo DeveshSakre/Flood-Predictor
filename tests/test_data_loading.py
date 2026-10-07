@@ -5,12 +5,14 @@ Compatible with standard library unittest and pytest.
 
 import unittest
 from pathlib import Path
+import numpy as np
 import pandas as pd
 
 from src.data.loaders import (
     load_split_catchment_ids,
     load_canonical_id_mapping,
     load_feature_catalog,
+    load_static_attributes,
 )
 from src.utils.config import get_repo_root
 
@@ -57,6 +59,69 @@ class TestDataLoading(unittest.TestCase):
         self.assertEqual(dyn_count, 20, f"Expected 20 dynamic features, got {dyn_count}")
         self.assertEqual(static_count, 129, f"Expected 129 static features, got {static_count}")
         self.assertEqual(graph_count, 10, f"Expected 10 graph features, got {graph_count}")
+
+    def test_load_static_attributes_shape_and_ordering(self):
+        """Verify static loader returns exactly 129 features in deterministic order without NaN/Inf."""
+        static_df = load_static_attributes()
+        self.assertEqual(static_df.shape, (472, 129), f"Expected shape (472, 129), got {static_df.shape}")
+        self.assertEqual(static_df.index.name, "gauge_id")
+        self.assertTrue(all(len(gid) == 5 for gid in static_df.index), "Non-5-digit gauge_id detected in index.")
+
+        # Verify exact column order against catalog
+        catalog = load_feature_catalog()
+        expected_cols = catalog[catalog["feature_type"] == "STATIC"]["feature_name"].tolist()
+        self.assertEqual(list(static_df.columns), expected_cols, "Feature ordering does not match catalog.")
+
+        # Verify numerical sanity (no NaN or Inf)
+        self.assertFalse(static_df.isna().any().any(), "Static attributes contain NaN.")
+        self.assertFalse(np.isinf(static_df.to_numpy()).any(), "Static attributes contain Inf.")
+
+    def test_load_static_attributes_partitions(self):
+        """Verify train, validation, and test partitions can be loaded and transformed with zero leakage."""
+        splits = load_split_catchment_ids()
+
+        # Train partition
+        train_static = load_static_attributes(catchment_ids=splits["train"])
+        self.assertEqual(train_static.shape, (169, 129))
+        self.assertEqual(train_static.index.tolist(), splits["train"])
+        # Verify train normalization properties (mean ~ 0, std ~ 1)
+        np.testing.assert_allclose(np.mean(train_static.to_numpy(), axis=0), 0.0, atol=1e-7)
+        np.testing.assert_allclose(np.std(train_static.to_numpy(), axis=0), 1.0, atol=1e-7)
+
+        # Validation partition
+        val_static = load_static_attributes(catchment_ids=splits["val"])
+        self.assertEqual(val_static.shape, (36, 129))
+        self.assertFalse(val_static.isna().any().any(), "Validation static features contain NaN.")
+        self.assertFalse(np.isinf(val_static.to_numpy()).any(), "Validation static features contain Inf.")
+
+        # Test partition
+        test_static = load_static_attributes(catchment_ids=splits["test"])
+        self.assertEqual(test_static.shape, (37, 129))
+        self.assertFalse(test_static.isna().any().any(), "Test static features contain NaN.")
+        self.assertFalse(np.isinf(test_static.to_numpy()).any(), "Test static features contain Inf.")
+
+    def test_load_static_attributes_anti_leakage(self):
+        """Verify that no streamflow signatures or forbidden leakage variables exist in static features."""
+        static_df = load_static_attributes()
+        cols = set(static_df.columns)
+
+        forbidden_leakage_vars = [
+            "reservoir_index",
+            "flow_availability",
+            "DIS_AV_CMS",
+            "ORD_FLOW",
+            "lstm_pred_streamflow",
+        ]
+        for f in forbidden_leakage_vars:
+            self.assertNotIn(f, cols, f"Forbidden leakage feature '{f}' found in static attributes!")
+
+        # Verify no CAMELS-IND hydro signatures
+        streamflow_signatures = [
+            "q_mean", "runoff_ratio", "slope_fdc", "baseflow_index", "bfi",
+            "q_10", "q_50", "q_90", "hfd_mean", "low_q_freq", "high_q_freq"
+        ]
+        for sig in streamflow_signatures:
+            self.assertNotIn(sig, cols, f"Streamflow signature '{sig}' found in static attributes!")
 
 
 if __name__ == "__main__":

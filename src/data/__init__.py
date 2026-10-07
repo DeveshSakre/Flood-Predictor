@@ -6,6 +6,7 @@ from src.data.loaders import (
     load_canonical_id_mapping,
     load_feature_catalog,
     load_catchment_forcing,
+    load_static_attributes,
 )
 from src.data.preprocessing import Preprocessor
 from src.data.feature_engineering import (
@@ -21,6 +22,7 @@ __all__ = [
     "load_canonical_id_mapping",
     "load_feature_catalog",
     "load_catchment_forcing",
+    "load_static_attributes",
     "Preprocessor",
     "add_cyclical_calendar_features",
     "add_antecedent_precipitation_indices",

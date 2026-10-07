@@ -13,9 +13,11 @@ Architectures:
 
 from src.models.xgboost_baseline import XGBoostBaseline
 from src.models.tcn import TCNModel, TemporalBlock
+from src.models.regional_tcn import RegionalTCN
 
 __all__ = [
     "XGBoostBaseline",
     "TCNModel",
     "TemporalBlock",
+    "RegionalTCN",
 ]
