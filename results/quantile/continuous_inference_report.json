@@ -1,0 +1,58 @@
+{
+  "status": "SUCCESS",
+  "timestamp": "2026-10-08 02:52:25",
+  "execution_time_seconds": 42.81,
+  "checkpoints_used": {
+    "regional_tcn": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\models\\regional_tcn\\regional_tcn_best.pt",
+    "river_gat": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\models\\gat\\river_gat_encoder.pt",
+    "edge_scaler": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\models\\gat\\edge_scaler.joblib",
+    "node_scaler": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\data\\processed\\scalers\\graph_node_scaler.joblib",
+    "quantile_head": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\models\\quantile\\option_b_quantile_head_best.pt"
+  },
+  "target_scaling": {
+    "mean": 178.805941252659,
+    "std": 1343.6230096856852
+  },
+  "coverage": {
+    "num_test_catchments": 37,
+    "mahanadi_count": 19,
+    "narmada_count": 18,
+    "earliest_date": "1999-10-01",
+    "latest_date": "2009-09-30",
+    "num_unique_dates": 3653,
+    "total_prediction_rows": 135161,
+    "rows_per_catchment": 3653,
+    "sequence_length": 64
+  },
+  "validation": {
+    "nan_counts": {
+      "q10": 0,
+      "q50": 0,
+      "q90": 0,
+      "y_true_missing": 7111
+    },
+    "inf_counts": {
+      "q10": 0,
+      "q50": 0,
+      "q90": 0
+    },
+    "negative_counts": {
+      "q10": 0,
+      "q50": 0,
+      "q90": 0
+    },
+    "crossing_violations_count": 0,
+    "crossing_rate_pct": 0.0,
+    "ranges_m3s": {
+      "y_true_min": 0.0,
+      "y_true_max": 33087.95,
+      "q10_min": 0.0,
+      "q10_max": 8312.880859375,
+      "q50_min": 1.7510986328125,
+      "q50_max": 19506.591796875,
+      "q90_min": 13.629196166992188,
+      "q90_max": 43302.08203125
+    }
+  },
+  "output_file": "C:\\Users\\Suchit\\Downloads\\Flood Predictor\\results\\quantile\\quantile_test_predictions.csv.gz"
+}
