@@ -7,8 +7,11 @@ from src.data.graph_dataset import RiverNetworkDataset
 from src.models.gat_config import GATConfig
 from src.models.river_gat import RiverGAT
 
-DATA_DIR = r"c:\Users\hp\Downloads\capstone\extracted_data\data"
-MODEL_DIR = r"c:\Users\hp\Downloads\capstone\models\gat"
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = str(REPO_ROOT / "data")
+MODEL_DIR = str(REPO_ROOT / "models" / "gat")
 
 @pytest.fixture
 def dataset():
